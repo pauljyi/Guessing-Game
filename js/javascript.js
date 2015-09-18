@@ -15,6 +15,8 @@
   var _number;
   var _comNumber;
   var _numGuess = 7;
+  var _win = 0;
+
 
   var _filetree = {
     'documents': {type: 'dir', files: {
@@ -34,7 +36,6 @@
   var _commands = {
     yes: function() {
       comNumber=Math.floor((Math.random()*100)+1);
-      alert(comNumber);
       return ([
         "I'll pick a number between 1 and 100.\nYou try to guess what it is.\nex. 'guess 13' \n\nYou have 7 tries, don't mess it up..."
 
@@ -63,23 +64,25 @@
 
     guess: function(number) {
       _numGuess--;
-      alert(_numGuess);
       if (number === parseInt(number, 10) && number>0 || number<101)
       {
         if(number < comNumber) {
-          if (_numGuess < 7) {
+          if (_numGuess > 0) {
             return(["Too Low. \nYou have " + _numGuess + " guesses left."])
           } else {
             return(["You are out of tries."]);
           }
         } else if (number > comNumber) {
-          if (_numGuess < 7) {
+          if (_numGuess > 0) {
             return(["Too High. \nYou have " + _numGuess + " guesses left."])
           } else {
             return(["You are out of tries."]);
           }
         }else{
-          return(["You Win!"])
+          var img = document.getElementById ("img");
+          img.style.visibility="visible";
+
+          return(["You Win!"]);
         }
       } else {
         return (["I'm sorry User, I can't do that. \nEnter a number between 1 and 100. \nYou have " + _numGuess + " guesses left. "])
