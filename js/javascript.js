@@ -54,7 +54,7 @@
         osc = null;
         context = null;
         vol = null;
-      }, duration*1000);
+      }, duration*2000);
 
       return ([
         'Volume:    ' + volume,
@@ -127,55 +127,6 @@
 
     clear: function() {
       return false;
-    },
-
-    contact: function(key) {
-      key = key || '';
-      var out = [];
-
-      switch ( key.toLowerCase() ) {
-        case 'email' :
-          window.open('mailto:andersevenrud@gmail.com');
-          break;
-        case 'github' :
-          window.open('https://github.com/andersevenrud/');
-          break;
-        case 'linkedin' :
-          window.open('http://www.linkedin.com/in/andersevenrud');
-          break;
-        case 'youtube' :
-          window.open('https://www.youtube.com/user/andersevenrud');
-          break;
-        case 'worpress' :
-          window.open('http://anderse.wordpress.com/');
-          break;
-        case 'twitter' :
-          window.open('https://twitter.com/#!/andersevenrud');
-          break;
-        case 'google+' :
-          window.open('https://profiles.google.com/101576798387217383063?rel=author');
-          break;
-
-        default :
-          if ( key.length ) {
-            out = ['Invalid key: ' + key];
-          } else {
-            out = [
-              "Contact information:\n",
-              'Name:      Anders Evenrud',
-              'Email:     andersevenrud@gmail.com',
-              'Github:    https://github.com/andersevenrud/',
-              'LinkedIn:  http://www.linkedin.com/in/andersevenrud',
-              'YouTube:   https://www.youtube.com/user/andersevenrud',
-              'Wordpress: http://anderse.wordpress.com/',
-              'Twitter:   https://twitter.com/#!/andersevenrud',
-              'Google+:   https://profiles.google.com/101576798387217383063?rel=author'
-            ];
-          }
-          break;
-      }
-
-      return out.join("\n");
     },
 
     help: function() {
@@ -472,7 +423,7 @@
       update();
     };
 
-    print("Initializing HAL v0.1 ....................................................\n");
+    print("Initializing HAL v0.1 ....................................................................................\n");
     print("\n\n");
 
     //print("------------------------------------------------------------------------------------------------------------------");
@@ -488,7 +439,7 @@
     print("                            #####     #####                        #####     #####                        \n", true);
     print("\n\n\n", true);
 
-    print("Would you like to play a game? \n", true);
+    print("Hello User, would you like to play a game? \n", true);
     print("\n\n" + _prompt());
 
   };
