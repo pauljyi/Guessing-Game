@@ -12,6 +12,8 @@
   var _history = [];
   var _hindex = -1;
   var _lhindex = -1;
+  var _number;
+  var _comNumber;
 
   var _filetree = {
     'documents': {type: 'dir', files: {
@@ -29,69 +31,51 @@
   };
 
   var _commands = {
-
-    sound: function(volume, duration, freq) {
-      if ( !window.webkitAudioContext ) {
-        return ['Your browser does not support his feature :('];
-      }
-
-      volume = ((volume || '').replace(/[^0-9]/g, '') << 0) || 100;
-      duration = ((duration || '').replace(/[^0-9]/g, '') << 0) || 1;
-      freq = ((freq || '').replace(/[^0-9]/g, '') << 0) || 1000;
-
-      var context = new webkitAudioContext();
-      var osc = context.createOscillator();
-      var vol = context.createGainNode();
-
-      vol.gain.value = volume/100;
-      osc.frequency.value = freq;
-      osc.connect(vol);
-      vol.connect(context.destination);
-      osc.start(context.currentTime);
-
-      setTimeout(function() {
-        osc.stop();
-        osc = null;
-        context = null;
-        vol = null;
-      }, duration*2000);
-
+    yes: function() {
+      comNumber=Math.floor((Math.random()*100)+1);
       return ([
-        'Volume:    ' + volume,
-        'Duration:  ' + duration,
-        'Frequenzy: ' + freq
-      ]).join("\n");
+        "I'll pick a number between 1 and 100.\nYou try to guess what it is.\nex. 'guess 13' \n"
+
+      ]);
+
     },
 
-    ls: function(dir) {
-      dir = parsepath((dir || _cwd));
+    // guess: function(number) {
+    //
+    //   if(number < 1 || number > 100){
+    //     return (["try number beetwenn 1 and 100 \n"]);
+    //   } else {
+    //       if (number = comNumber)
+    //         return (["you win \n"]);
+    //     }else {
+    //       if (number < comNumber)
+    //         return (["Too Low, \n Try again."]);
+    //     } else {
+    //         if (number > comNumber)
+    //           return (["Too High, \n Try again."]);
+    //     }
+    //
+    //
+    // },
+    //
 
-      var out = [];
-      var iter = getiter(dir);
-
-      var p;
-      var tree = (iter && iter.type == 'dir') ? iter.files : _filetree;
-      var count = 0;
-      var total = 0;
-
-      for ( var i in tree ) {
-        if ( tree.hasOwnProperty(i) ) {
-          p = tree[i];
-          if ( p.type == 'dir' ) {
-            out.push(format('{0} {1} {2}', padRight('<'+i+'>', 20), padRight(p.type, 20), '0'));
-          } else {
-            out.push(format('{0} {1} {2}', padRight(i, 20), padRight(p.mime, 20), p.content.length));
-            total += p.content.length;
-          }
-          count++;
-        }
+    guess: function(number) {
+      if (number===parseInt(number,10) && number>1 || number<100 )
+        {
+      if(number < 1 || number > 100){
+        return(["Try a number between 1 and 100"])
       }
-
-      out.push(format("\n{0} file(s) in total, {1} byte(s)", count, total));
-
-      return out.join("\n");
+      if(number < comNumber) {
+        return(["Too Low"])
+      } else if (number > comNumber){
+        return(["Too High"])
+      }else{
+        return(["You Win!"])
+      }
+    } else {
+      return (["Enter a number between 1 and 100"])
+    }
     },
-
     cd: function(dir) {
       if ( !dir ) {
         return (["You need to supply argument: dir"]).join("\n");
@@ -423,20 +407,20 @@
       update();
     };
 
-    print("Initializing HAL v0.1 ....................................................................................\n");
+    print("Initializing HAL v0.1 ................................................................\n");
     print("\n\n");
 
     //print("------------------------------------------------------------------------------------------------------------------");
-    print("                            #####     #####                        #####     #####                        \n", true);
-    print("                            #####     #####                        #####     #####                        \n", true);
-    print("                      ##########################             ##########################                   \n", true);
-    print("                      ##########################             ##########################                   \n", true);
-    print("                            #####     #####                        #####     #####                        \n", true);
-    print("                            #####     #####                        #####     #####                        \n", true);
-    print("                      ##########################             ##########################                   \n", true);
-    print("                      ##########################             ##########################                   \n", true);
-    print("                            #####     #####                        #####     #####                        \n", true);
-    print("                            #####     #####                        #####     #####                        \n", true);
+    print("                        #####     #####                    #####     #####                   \n", true);
+    print("                        #####     #####                    #####     #####                   \n", true);
+    print("                  ##########################         ##########################              \n", true);
+    print("                  ##########################         ##########################              \n", true);
+    print("                        #####     #####                    #####     #####                   \n", true);
+    print("                        #####     #####                    #####     #####                   \n", true);
+    print("                  ##########################         ##########################              \n", true);
+    print("                  ##########################         ##########################              \n", true);
+    print("                        #####     #####                    #####     #####                   \n", true);
+    print("                        #####     #####                    #####     #####                   \n", true);
     print("\n\n\n", true);
 
     print("Hello User, would you like to play a game? \n", true);
