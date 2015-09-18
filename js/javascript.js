@@ -14,7 +14,7 @@
   var _lhindex = -1;
   var _number;
   var _comNumber;
-  var _numGuess = 7;
+  var _numGuess = 10;
   var _win = 0;
 
 
@@ -35,9 +35,22 @@
 
   var _commands = {
     yes: function() {
+      var img = document.getElementById ("img");
+      img.style.visibility="hidden";
+
       comNumber=Math.floor((Math.random()*100)+1);
+
       return ([
-        "I'll pick a number between 1 and 100.\nYou try to guess what it is.\nex. 'guess 13' \n\nYou have 7 tries, don't mess it up..."
+        "I'll pick a number between 1 and 100.\nYou try to guess what it is.\nex. 'guess 13' \n\nYou have "+ _numGuess +" tries, don't mess it up..."
+
+      ]);
+
+    },
+
+    no: function() {
+
+      return ([
+        "I'm sorry User, you must play. \n"
 
       ]);
 
@@ -70,22 +83,26 @@
           if (_numGuess > 0) {
             return(["Too Low. \nYou have " + _numGuess + " guesses left."])
           } else {
-            return(["You are out of tries."]);
+            _numGuess=0;
+            _comNumber="";
+            return(["You are out of tries. \nDo you want to play again?"]);
           }
         } else if (number > comNumber) {
           if (_numGuess > 0) {
             return(["Too High. \nYou have " + _numGuess + " guesses left."])
           } else {
-            return(["You are out of tries."]);
+            _numGuess=0;
+            _comNumber="";
+            return(["You are out of tries. \nDo you want to play again?"]);
           }
         }else{
           var img = document.getElementById ("img");
           img.style.visibility="visible";
 
-          return(["You Win!"]);
+          return(["You Win! \nDo you want to play again?"]);
         }
       } else {
-        return (["I'm sorry User, I can't do that. \nEnter a number between 1 and 100. \nYou have " + _numGuess + " guesses left. "])
+        return (["I'm sorry User, I can't do that. \nEnter a number between 1 and 100. \nYou have " + _numGuess + " guesses left."])
       }},
 
       help: function() {
@@ -386,16 +403,16 @@
       print("\n\n");
 
       //print("------------------------------------------------------------------------------------------------------------------");
+      print("                           #####      #####                    #####     #####                   \n", true);
+      print("                          #####      #####                    #####     #####                   \n", true);
+      print("                     #########################         ##########################              \n", true);
+      print("                    #########################         ##########################              \n", true);
       print("                        #####     #####                    #####     #####                   \n", true);
-      print("                        #####     #####                    #####     #####                   \n", true);
-      print("                  ##########################         ##########################              \n", true);
-      print("                  ##########################         ##########################              \n", true);
-      print("                        #####     #####                    #####     #####                   \n", true);
-      print("                        #####     #####                    #####     #####                   \n", true);
-      print("                  ##########################         ##########################              \n", true);
-      print("                  ##########################         ##########################              \n", true);
-      print("                        #####     #####                    #####     #####                   \n", true);
-      print("                        #####     #####                    #####     #####                   \n", true);
+      print("                       #####     #####                    #####     #####                   \n", true);
+      print("                  #########################         ##########################              \n", true);
+      print("                 #########################         ##########################              \n", true);
+      print("                     #####     #####                    #####     #####                   \n", true);
+      print("                    #####     #####                    #####     #####                   \n", true);
       print("\n\n", true);
 
       print("Hello User, would you like to play a game? \n", true);
