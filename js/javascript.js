@@ -1,4 +1,3 @@
-
 (function() {
 
   var $output;
@@ -14,7 +13,7 @@
   var _lhindex = -1;
   var _number;
   var _comNumber;
-  var _numGuess = 7;
+  var _numGuess = 10;
   var _win = 0;
 
 
@@ -39,7 +38,6 @@
       img.style.visibility="hidden";
 
       comNumber=Math.floor((Math.random()*100)+1);
-      alert(comNumber);
 
       return ([
         "I'll pick a number between 1 and 100.\nYou try to guess what it is.\nex. 'guess 13' \n\nYou have "+ _numGuess +" tries, don't mess it up..."
@@ -74,7 +72,7 @@
     //
     //
     // },
-    //
+
 
     guess: function(number) {
       _numGuess--;
